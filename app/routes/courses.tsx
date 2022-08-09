@@ -1,6 +1,6 @@
 import type { MetaFunction, LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData, Outlet } from "@remix-run/react";
 import { motion } from "framer-motion";
 
 // https://remix.run/api/conventions#meta
@@ -12,7 +12,7 @@ export let meta: MetaFunction = () => {
 };
 
 // https://remix.run/guides/routing#index-routes
-export default function Index() {
+export default function CoursePage() {
   return (
     <div>
       <main>
@@ -24,6 +24,7 @@ export default function Index() {
         >
           Welcome to Youtemy
         </motion.h2>
+        <Outlet />
       </main>
     </div>
   );

@@ -10,7 +10,7 @@ import {
   useCatch,
 } from "@remix-run/react";
 
-import globalStylesUrl from "./styles/global.css";
+import globalStylesUrl from "./styles/globals.css";
 
 // https://remix.run/api/conventions#links
 export let links: LinksFunction = () => {
@@ -116,5 +116,13 @@ function Document({
 }
 
 function Layout({ children }: { children: React.ReactNode }) {
-  return <div className="overflow-x-hidden">{children}</div>;
+  return (
+    <div className="overflow-x-hidden">
+      <nav className="flex flex-row items-center justify-between container mx-auto">
+        <h2>Youtemy</h2>
+        <Link to="/courses">Courses</Link>
+      </nav>
+      {children}
+    </div>
+  );
 }
