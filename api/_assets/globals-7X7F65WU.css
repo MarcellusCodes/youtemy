@@ -648,18 +648,9 @@ video {
   border-radius: 0.125rem;
 }
 
-.border-2 {
-  border-width: 2px;
-}
-
 .border-red-600 {
   --tw-border-opacity: 1;
   border-color: rgb(220 38 38 / var(--tw-border-opacity));
-}
-
-.border-secondary-50 {
-  --tw-border-opacity: 1;
-  border-color: rgb(9 21 64 / var(--tw-border-opacity));
 }
 
 .bg-primary-50 {
@@ -772,11 +763,6 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.text-red-600 {
-  --tw-text-opacity: 1;
-  color: rgb(220 38 38 / var(--tw-text-opacity));
 }
 
 .transition {

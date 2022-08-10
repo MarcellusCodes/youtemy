@@ -117,12 +117,8 @@ function Document({
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="overflow-x-hidden">
-      <nav className="flex flex-row items-center justify-between container mx-auto">
-        <h2>Youtemy</h2>
-        <Link to="/courses">Courses</Link>
-      </nav>
-      {children}
+    <div className="bg-primary-50 px-4 md:px-0">
+      <div className="container mx-auto">{children}</div>
     </div>
   );
 }
