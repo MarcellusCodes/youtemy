@@ -4,7 +4,7 @@ interface ButtonProps {
   type?: "button" | "submit";
   onClick?: () => void;
   primary?: boolean;
-  classNames: string;
+  classNames?: string;
   children: React.ReactNode | string;
 }
 
