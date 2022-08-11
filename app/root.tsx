@@ -117,12 +117,12 @@ function Document({
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="bg-primary-50 px-4 md:px-0">
+    <div className="bg-primary-50 px-4 md:px-0 pb-20">
       <div className="container mx-auto">
         <Navbar>
           <li>
             <Link
-              className="px-6 py-3 font-primary bg-secondary-50 hover:bg-secondary-200 active:bg-secondary-100
+              className="px-6 py-2 inline-flex font-primary bg-secondary-50 hover:bg-secondary-200 active:bg-secondary-100
        duration-100 text-lg text-white"
               to="/courses"
             >

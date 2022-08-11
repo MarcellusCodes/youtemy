@@ -11,9 +11,9 @@ export async function loader({ request, params }: LoaderArgs) {
 export default function CoursePage() {
   const data = useLoaderData<typeof loader>();
   return (
-    <div>
+    <main>
       <h3 className="text-2xl font-bold">All Courses</h3>
-    </div>
+    </main>
   );
 }
 

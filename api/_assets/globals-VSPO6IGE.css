@@ -853,26 +853,6 @@ video {
   background-color: rgb(124 124 125 / var(--tw-bg-opacity));
 }
 
-.bg-primary-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(198 198 199 / var(--tw-bg-opacity));
-}
-
-.bg-primary-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(223 222 224 / var(--tw-bg-opacity));
-}
-
-.bg-secondary-800 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(206 208 217 / var(--tw-bg-opacity));
-}
-
-.bg-secondary-700 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(181 185 198 / var(--tw-bg-opacity));
-}
-
 .fill-current {
   fill: currentColor;
 }
