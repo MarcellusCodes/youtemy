@@ -121,8 +121,12 @@ function Layout({ children }: { children: React.ReactNode }) {
       <div className="container mx-auto">
         <Navbar>
           <li>
-            <Link to="/courses">
-              <Button>Courses</Button>
+            <Link
+              className="px-6 py-3 font-primary bg-secondary-50 hover:bg-secondary-200 active:bg-secondary-100
+       duration-100 text-lg text-white"
+              to="/courses"
+            >
+              Courses
             </Link>
           </li>
           <li>

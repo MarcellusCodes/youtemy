@@ -60,12 +60,9 @@ export default function Index() {
               className="border-2 border-secondary-50 bg-transparent px-2 py-2 w-full focus:outline-none hover:bg-secondary-200 duration-100 focus:bg-secondary-100 focus:text-white text-secondary-50"
             />
             <div className="py-2" />
-            <button
-              type="submit"
-              className="px-6 py-2 bg-red-600 hover:bg-red-500 active:bg-red-700 duration-100 text-lg text-white w-full"
-            >
+            <Button primary={true} type="submit" classNames={"w-full"}>
               Start Learning
-            </button>
+            </Button>
           </form>
         </div>
       </header>
