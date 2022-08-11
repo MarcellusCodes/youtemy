@@ -1,6 +1,7 @@
 import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { Form, useCatch, useLoaderData, Outlet, Link } from "@remix-run/react";
+import { Button } from "../../../../components/index";
 
 export async function loader({ request, params }: LoaderArgs) {
   console.log(request, params);
@@ -11,10 +12,52 @@ export async function loader({ request, params }: LoaderArgs) {
 export default function LecturePage() {
   const data = useLoaderData<typeof loader>();
   return (
-    <div className="flex items-start">
-      <div className="w-[600px] h-[300px] flex-initial bg-purple-500">
-        
-        <Link to="/courses/25646/lectures">Add Lecture</Link>
+    <div className="flex flex-col h-auto w-[500px]">
+      <div className="py-4" />
+      <h2 className="font-primary text-secondary-50 text-3xl text-center">
+        Lecture
+      </h2>
+      <div className="pb-2" />
+
+      <div className="flex flex-col">
+        <form action="">
+          <div className="flex flex-col item-start">
+            <div className="py-2" />
+            <label htmlFor="from-video">From Video Second</label>
+            <input
+              type="range"
+              min="1"
+              max="100"
+              value="50"
+              id="from-video"
+              name="from-video"
+            />
+          </div>
+          <div className="py-1" />
+          <div className="flex flex-col item-start">
+            <label htmlFor="to-video">To Video Second</label>
+            <input
+              type="range"
+              min="1"
+              max="100"
+              value="50"
+              id="to-video"
+              name="to-video"
+            />
+          </div>
+          <div className="py-1" />
+          <input
+            type="text"
+            name="course-lecture"
+            id="course-lecture"
+            placeholder="Title of your lecture"
+            className="border-2 border-secondary-50 bg-transparent px-2 py-2 w-full focus:outline-none hover:bg-secondary-200 duration-100 focus:bg-secondary-100 focus:text-white text-secondary-50"
+          />
+          <div className="py-2" />
+          <Button primary={true} classNames="w-full">
+            Add
+          </Button>
+        </form>
       </div>
     </div>
   );
