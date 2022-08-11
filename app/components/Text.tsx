@@ -1,7 +1,7 @@
 import React from "react";
 
 interface TextProps {
-  primary: boolean;
+  primary?: boolean;
   children: React.ReactNode;
 }
 
