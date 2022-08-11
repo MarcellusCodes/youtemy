@@ -9,7 +9,7 @@ import {
   ScrollRestoration,
   useCatch,
 } from "@remix-run/react";
-
+import { Button, Navbar } from "./components/index";
 import globalStylesUrl from "./styles/globals.css";
 
 // https://remix.run/api/conventions#links
@@ -118,7 +118,19 @@ function Document({
 function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="bg-primary-50 px-4 md:px-0">
-      <div className="container mx-auto">{children}</div>
+      <div className="container mx-auto">
+        <Navbar>
+          <li>
+            <Link to="/courses">
+              <Button>Courses</Button>
+            </Link>
+          </li>
+          <li>
+            <Button>Login</Button>
+          </li>
+        </Navbar>
+        {children}
+      </div>
     </div>
   );
 }

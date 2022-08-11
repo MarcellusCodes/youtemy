@@ -34,16 +34,6 @@ export default function Index() {
       >
         <path d="M223.17 86.808c20.5 31.2 35.1 57.6 38.6 87.5 3.6 30-4 63.4-24.5 79.1-20.5 15.6-53.9 13.4-91.9 17.9-37.9 4.4-80.4 15.6-97.7 0-17.3-15.6-9.6-58.1-.2-91.2 9.3-33.1 20.1-56.9 37.5-88.2 17.3-31.2 41.1-69.9 66.2-71.2 25.1-1.3 51.5 34.8 72 66.1" />
       </svg>
-      <Navbar>
-        <li>
-          <Link to="/courses">
-            <Button>Courses</Button>
-          </Link>
-        </li>
-        <li>
-          <Button>Login</Button>
-        </li>
-      </Navbar>
       <header className="py-20 flex flex-col items-center">
         <h1 className="text-red-600 font-bold font-primary text-6xl">
           Youtemy

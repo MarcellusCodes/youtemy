@@ -1,6 +1,7 @@
 import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { Form, useCatch, useLoaderData, Outlet } from "@remix-run/react";
+import { Navbar } from "../../components/index";
 
 export async function loader({ request, params }: LoaderArgs) {
   console.log(request, params);
@@ -10,12 +11,7 @@ export async function loader({ request, params }: LoaderArgs) {
 
 export default function CoursePage() {
   const data = useLoaderData<typeof loader>();
-  return (
-    <div className="flex flex-row items-start w-full">
-      <div className="h-[600px] w-full bg-red-600">{data.params.courseId}</div>
-      <Outlet />
-    </div>
-  );
+  return <></>;
 }
 
 export function ErrorBoundary({ error }: { error: Error }) {
