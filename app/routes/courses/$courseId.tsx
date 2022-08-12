@@ -1,7 +1,8 @@
 import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
-import { Form, useCatch, useLoaderData, Outlet } from "@remix-run/react";
-import YouTube from "react-youtube";
+import { Form, useCatch, useLoaderData, Outlet, Link } from "@remix-run/react";
+import { useState } from "react";
+import YouTube, { YouTubeProps } from "react-youtube";
 import { Text, Button } from "../../components/index";
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +14,15 @@ export async function loader({ request, params }: LoaderArgs) {
 
 export default function CoursePage() {
   const data = useLoaderData<typeof loader>();
+  const [currentTime, setCurrentTime] = useState("");
   const navigate = useNavigate();
+  const onPlayerStop: YouTubeProps["onPause"] = (event) => {
+    setCurrentTime(event.target.getCurrentTime());
+  };
+  const onPlayerStart: YouTubeProps["onPlay"] = (event) => {
+    console.log(event.target.getCurrentTime());
+  };
+  const context = { currentTime: currentTime };
   return (
     <>
       <main>
@@ -36,7 +45,7 @@ export default function CoursePage() {
               navigate(`/courses/${data.params.courseId}/lectures`);
             }}
           >
-            Create Lectures
+            Lectures
           </Button>
         </div>
         <div className="py-4" />
@@ -45,8 +54,20 @@ export default function CoursePage() {
             videoId={"5-1LM2NySR0"}
             id={"1"}
             iframeClassName={"w-full aspect-video h-[640px]"}
+            onPlay={onPlayerStart}
+            onPause={onPlayerStop}
           />
-          <Outlet />
+          <div className="flex flex-col">
+            <Link
+              className="px-6 py-2 font-primary bg-secondary-50 hover:bg-secondary-200 active:bg-secondary-100
+       duration-100 text-lg text-white text-center"
+              to={`/courses/${data.params.courseId}/lectures/new`}
+            >
+              Add Lecture
+            </Link>
+
+            <Outlet context={context} />
+          </div>
         </div>
       </main>
     </>

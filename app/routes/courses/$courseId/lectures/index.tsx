@@ -37,14 +37,9 @@ export default function LecturePage() {
       </div>
       <div className="pt-4" />
       <div className="flex flex-row items-center justify-center space-x-6">
-        <Button>Generate Course</Button>
-        <Link
-          className="px-6 py-2 font-primary bg-red-600 hover:bg-red-500 active:bg-red-700
-       duration-100 text-lg text-white text-center"
-          to={`/courses/${data.params.courseId}/lectures/new`}
-        >
-          Add Lecture
-        </Link>
+        <Button classNames="w-full" primary={true}>
+          Generate Course
+        </Button>
       </div>
     </div>
   );

@@ -1,16 +1,26 @@
 import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
-import { Form, useCatch, useLoaderData, Outlet, Link } from "@remix-run/react";
+import {
+  Form,
+  useCatch,
+  useLoaderData,
+  Outlet,
+  Link,
+  useOutletContext,
+} from "@remix-run/react";
 import { Button } from "../../../../components/index";
 
 export async function loader({ request, params }: LoaderArgs) {
   console.log(request, params);
 
-  return json({ params });
+  return json({ params, request });
 }
 
 export default function LecturePage() {
   const data = useLoaderData<typeof loader>();
+  console.log(data);
+  const { currentTime } = useOutletContext();
+
   return (
     <div className="flex flex-col h-auto w-[500px]">
       <div className="py-4" />
