@@ -9,6 +9,7 @@ import {
   useOutletContext,
 } from "@remix-run/react";
 import { Button } from "../../../../components/index";
+import { useNavigate } from "react-router-dom";
 
 export async function loader({ request, params }: LoaderArgs) {
   console.log(request, params);
@@ -18,8 +19,8 @@ export async function loader({ request, params }: LoaderArgs) {
 
 export default function LecturePage() {
   const data = useLoaderData<typeof loader>();
-  console.log(data);
-  const { currentTime } = useOutletContext();
+  const navigate = useNavigate();
+  const { currentTime, player } = useOutletContext();
 
   return (
     <div className="flex flex-col h-auto w-[500px]">
@@ -64,7 +65,16 @@ export default function LecturePage() {
             className="border-2 border-secondary-50 bg-transparent px-2 py-2 w-full focus:outline-none hover:bg-secondary-200 duration-100 focus:bg-secondary-100 focus:text-white text-secondary-50"
           />
           <div className="py-2" />
-          <Button primary={true} classNames="w-full">
+          <Button
+            primary={true}
+            classNames="w-full"
+            onClick={async () => {
+              console.log(currentTime);
+              console.log("add lecture to db");
+              await player?.playVideo();
+              navigate(`/courses/${data.params.courseId}/lectures`);
+            }}
+          >
             Add
           </Button>
         </form>

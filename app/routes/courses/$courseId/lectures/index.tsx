@@ -1,6 +1,13 @@
 import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
-import { Form, useCatch, useLoaderData, Outlet, Link } from "@remix-run/react";
+import {
+  Form,
+  useCatch,
+  useLoaderData,
+  Outlet,
+  Link,
+  useOutletContext,
+} from "@remix-run/react";
 import { Button } from "../../../../components/index";
 
 export async function loader({ request, params }: LoaderArgs) {
@@ -11,6 +18,11 @@ export async function loader({ request, params }: LoaderArgs) {
 
 export default function LecturePage() {
   const data = useLoaderData<typeof loader>();
+  const { player } = useOutletContext();
+
+  const playerSeekTo = (second: number) => {
+    player?.seekTo(second, true);
+  };
   return (
     <div className="flex flex-col h-auto">
       <div className="py-4" />
@@ -21,7 +33,12 @@ export default function LecturePage() {
       <div className="w-[500px] h-[300px] flex-initial bg-secondary-900 p-4">
         <ul className="flex flex-col items-start w-full">
           <li className="flex flex-row items-center justify-between border-b-2 border-secondary-50 w-full font-primary text-secondary-50">
-            <div>
+            <div
+              onClick={() => {
+                playerSeekTo(120);
+              }}
+              className="hover:bg-red-500 cursor-pointer"
+            >
               <span>02:03 - 02:56</span>
               <p className="font-bold">Setup Auth</p>
             </div>
