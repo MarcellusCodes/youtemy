@@ -7,8 +7,10 @@ import {
   Outlet,
   Link,
   useOutletContext,
+  useNavigate,
 } from "@remix-run/react";
-import { Button } from "../../../../components/index";
+import { useState } from "react";
+import { Button, TextInput, RangeInput } from "../../../../components/index";
 
 export async function loader({ request, params }: LoaderArgs) {
   console.log(request, params);
@@ -18,57 +20,42 @@ export async function loader({ request, params }: LoaderArgs) {
 
 export default function LecturePage() {
   const data = useLoaderData<typeof loader>();
-  const { currentTime } = useOutletContext();
+  const { currentTime, playerPause } = useOutletContext();
+  const navigate = useNavigate();
   return (
-    <div className="flex flex-col h-auto">
-      <div className="py-4" />
-      <h2 className="font-primary text-secondary-50 text-3xl text-center">
-        Lecture
-      </h2>
-      <div className="pb-2" />
-      <div className="w-[500px] h-auto flex-initial bg-secondary-900 p-4">
-        <ul className="flex flex-col items-start w-full">
-          <li className="flex flex-row items-center justify-between border-b-2 border-secondary-50 w-full font-primary text-secondary-50">
-            <div>
-              <span>02:03 - 02:56</span>
-              <p className="font-bold">Setup Auth</p>
-            </div>
-          </li>
-        </ul>
+    <div className="flex flex-col bg-primary-200 p-4 rounded-md w-full">
+      <div className="flex flex-row items-center justify-between w-full">
+        <h3 className="font-primary text-white text-3xl">Lecture</h3>
+        <Button
+          classNames="px-2"
+          primary={true}
+          onClick={async () => {
+            await playerPause();
+            navigate(`/courses/${data.params.courseId}/lectures`);
+          }}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            className="h-6 w-6 text-primary-300 fill-current"
+          >
+            <g data-name="01 align center">
+              <path d="M22 4h-5V2a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H2v2h2v15a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V6h2ZM9 2h6v2H9Zm9 19a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V6h12Z" />
+              <path d="M9 10h2v8H9zM13 10h2v8h-2z" />
+            </g>
+          </svg>
+        </Button>
       </div>
+      <div className="py-2" />
       <div className="flex flex-col">
         <form action="">
-          <div className="flex flex-col item-start">
-            <div className="py-2" />
-            <label htmlFor="from-video">From Video Second</label>
-            <input
-              type="range"
-              min="1"
-              max="100"
-              value="50"
-              id="from-video"
-              name="from-video"
-            />
-          </div>
+          <RangeInput name="from-video" label="From video second" max="100" />
           <div className="py-1" />
-          <div className="flex flex-col item-start">
-            <label htmlFor="to-video">To Video Second</label>
-            <input
-              type="range"
-              min="1"
-              max="100"
-              value="50"
-              id="to-video"
-              name="to-video"
-            />
-          </div>
+          <RangeInput name="to-video" label="To video second" max="100" />
           <div className="py-1" />
-          <input
-            type="text"
+          <TextInput
             name="course-lecture"
-            id="course-lecture"
             placeholder="Title of your lecture"
-            className="border-2 border-secondary-50 bg-transparent px-2 py-2 w-full focus:outline-none hover:bg-secondary-200 duration-100 focus:bg-secondary-100 focus:text-white text-secondary-50"
           />
           <div className="py-2" />
           <Button primary={true} classNames="w-full">

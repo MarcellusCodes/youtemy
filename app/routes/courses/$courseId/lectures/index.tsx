@@ -7,8 +7,9 @@ import {
   Outlet,
   Link,
   useOutletContext,
+  useNavigate,
 } from "@remix-run/react";
-import { Button } from "../../../../components/index";
+import { Button, Lecture } from "../../../../components/index";
 
 export async function loader({ request, params }: LoaderArgs) {
   console.log(request, params);
@@ -18,46 +19,47 @@ export async function loader({ request, params }: LoaderArgs) {
 
 export default function LecturePage() {
   const data = useLoaderData<typeof loader>();
-  const { player } = useOutletContext();
+  const { player, playerSeekTo, playerPause } = useOutletContext();
+  const navigate = useNavigate();
 
-  const playerSeekTo = (second: number) => {
-    player?.seekTo(second, true);
-  };
   return (
-    <div className="flex flex-col h-auto">
-      <div className="py-4" />
-      <h2 className="font-primary text-secondary-50 text-3xl text-center">
-        Lectures
-      </h2>
-      <div className="pb-2" />
-      <div className="w-[500px] h-[300px] flex-initial bg-secondary-900 p-4">
+    <div className="flex flex-col w-full">
+      <div className="bg-primary-200 p-4 rounded-md flex flex-col items-start justify-between">
+        <div className="flex flex-row items-center justify-between w-full">
+          <h3 className="font-primary text-white text-3xl">Lectures</h3>
+          <Button
+            classNames="px-2"
+            primary={true}
+            onClick={async () => {
+              await playerPause();
+              navigate(`/courses/${data.params.courseId}/lectures/new`);
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              className="w-6 h-6 fill-current text-primary-300"
+            >
+              <path d="M23 11H13V1a1 1 0 0 0-1-1 1 1 0 0 0-1 1v10H1a1 1 0 0 0-1 1 1 1 0 0 0 1 1h10v10a1 1 0 0 0 1 1 1 1 0 0 0 1-1V13h10a1 1 0 0 0 1-1 1 1 0 0 0-1-1Z" />
+            </svg>
+          </Button>
+        </div>
+        <div className="py-2" />
         <ul className="flex flex-col items-start w-full">
-          <li className="flex flex-row items-center justify-between border-b-2 border-secondary-50 w-full font-primary text-secondary-50">
-            <div
-              onClick={() => {
-                playerSeekTo(120);
-              }}
-              className="hover:bg-red-500 cursor-pointer"
-            >
-              <span>02:03 - 02:56</span>
-              <p className="font-bold">Setup Auth</p>
-            </div>
-            <Link
-              className="px-4 py-1 font-primary bg-red-600 hover:bg-red-500 active:bg-red-700
-       duration-100 text-md text-white text-center"
-              to="/courses/25646/lectures/setup-auth"
-            >
-              Edit
-            </Link>
+          <li
+            onClick={() => {
+              playerSeekTo(120);
+            }}
+            className="w-full z-0 relative"
+          >
+            <Lecture id="1" courseId="1" start="02:03" end="03:06" />
           </li>
         </ul>
       </div>
-      <div className="pt-4" />
-      <div className="flex flex-row items-center justify-center space-x-6">
-        <Button classNames="w-full" primary={true}>
-          Generate Course
-        </Button>
-      </div>
+      <div className="py-2" />
+      <Button classNames="w-full" primary={true}>
+        Generate Course
+      </Button>
     </div>
   );
 }

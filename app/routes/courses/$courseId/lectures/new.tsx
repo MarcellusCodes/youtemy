@@ -8,7 +8,7 @@ import {
   Link,
   useOutletContext,
 } from "@remix-run/react";
-import { Button } from "../../../../components/index";
+import { Button, TextInput, RangeInput } from "../../../../components/index";
 import { useNavigate } from "react-router-dom";
 
 export async function loader({ request, params }: LoaderArgs) {
@@ -23,46 +23,18 @@ export default function LecturePage() {
   const { currentTime, player } = useOutletContext();
 
   return (
-    <div className="flex flex-col h-auto w-[500px]">
-      <div className="py-4" />
-      <h2 className="font-primary text-secondary-50 text-3xl text-center">
-        Lecture
-      </h2>
+    <div className="flex flex-col w-full bg-primary-200 p-4 rounded-md">
+      <h3 className="font-primary text-white text-3xl text-left">Lecture</h3>
       <div className="pb-2" />
-
       <div className="flex flex-col">
         <form action="">
-          <div className="flex flex-col item-start">
-            <div className="py-2" />
-            <label htmlFor="from-video">From Video Second</label>
-            <input
-              type="range"
-              min="1"
-              max="100"
-              value="50"
-              id="from-video"
-              name="from-video"
-            />
-          </div>
+          <RangeInput name="from-video" label="From video second" max="100" />
           <div className="py-1" />
-          <div className="flex flex-col item-start">
-            <label htmlFor="to-video">To Video Second</label>
-            <input
-              type="range"
-              min="1"
-              max="100"
-              value="50"
-              id="to-video"
-              name="to-video"
-            />
-          </div>
+          <RangeInput name="to-video" label="To video second" max="100" />
           <div className="py-1" />
-          <input
-            type="text"
+          <TextInput
             name="course-lecture"
-            id="course-lecture"
             placeholder="Title of your lecture"
-            className="border-2 border-secondary-50 bg-transparent px-2 py-2 w-full focus:outline-none hover:bg-secondary-200 duration-100 focus:bg-secondary-100 focus:text-white text-secondary-50"
           />
           <div className="py-2" />
           <Button
@@ -75,7 +47,7 @@ export default function LecturePage() {
               navigate(`/courses/${data.params.courseId}/lectures`);
             }}
           >
-            Add
+            Add Lecture
           </Button>
         </form>
       </div>

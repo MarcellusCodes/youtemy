@@ -1,17 +1,12 @@
 import React from "react";
 
 interface TextProps {
-  primary?: boolean;
   children: React.ReactNode;
 }
 
-const Text: React.FC<TextProps> = ({ primary = true, children }) => {
+const Text: React.FC<TextProps> = ({ children }) => {
   return (
-    <p
-      className={`${
-        primary ? "text-red-600" : "text-secondary-50"
-      } font-primary text-lg md:text-xl opacity-80`}
-    >
+    <p className="font-primary text-lg md:text-xl text-white opacity-80">
       {children}
     </p>
   );

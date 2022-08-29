@@ -21,9 +21,9 @@ const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       className={`px-6 py-2 ${
         primary
-          ? "bg-red-600 hover:bg-red-500 active:bg-red-700"
-          : "bg-secondary-50 hover:bg-secondary-200 active:bg-secondary-100"
-      } duration-100 text-lg text-white border-none font-primary ${classNames}`}
+          ? "bg-tertiary-300 hover:bg-tertiary-500 focus:bg-tertiary-600 border-tertiary-300 hover:border-tertiary-500 focus:border-tertiary-600 text-black"
+          : "bg-transparent border-tertiary-300 hover:bg-tertiary-300 focus:bg-tertiary-500 text-white"
+      } duration-100 text-lg rounded-md border-2 font-primary ${classNames}`}
     >
       {children}
     </button>

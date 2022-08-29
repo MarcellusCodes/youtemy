@@ -7,13 +7,13 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ children }) => {
   return (
-    <nav className="flex flex-row items-center justify-between py-4 mb-20">
-      <Link to="/">
-        <h2 className="font-bold font-primary text-secondary-50 text-3xl">
-          Youtemy
-        </h2>
+    <nav className="flex flex-row items-center justify-between py-4 mb-10 md:mb-20">
+      <Link
+        to="/"
+        className="font-bold font-primary text-secondary-300 text-3xl"
+      >
+        Youtemy
       </Link>
-
       <ul className="flex flex-row items-center space-x-6">{children}</ul>
     </nav>
   );

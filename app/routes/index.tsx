@@ -1,8 +1,7 @@
-import type { MetaFunction, LoaderFunction } from "@remix-run/node";
+import type { MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
-import { motion } from "framer-motion";
-import { Navbar, Button } from "../components/index";
+import { useLoaderData } from "@remix-run/react";
+import { Button, TextInput } from "../components/index";
 
 // https://remix.run/api/conventions#meta
 export let meta: MetaFunction = () => {
@@ -16,59 +15,61 @@ export let meta: MetaFunction = () => {
 export default function Index() {
   return (
     <>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="absolute top-[5%] left-[15%] opacity-20 w-[300px] h-[300px] text-secondary-50 fill-current"
-      >
-        <path d="M267.625 47.9c22.1 21.3 23.6 64.2 23.7 107.2.1 43-1.1 86.2-23.3 103.8-22.1 17.7-65.3 9.9-101.4 2.9-36.2-6.9-65.5-13-96.7-30.7-31.3-17.6-64.5-46.9-61-72.5 3.6-25.7 44-47.8 75.3-69.1 31.2-21.4 53.3-41.9 85.8-52.3 32.5-10.4 75.4-10.7 97.6 10.7" />
-      </svg>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="absolute top-[25%] right-[10%] opacity-20 w-[300px] h-[300px] text-secondary-50 fill-current"
-      >
-        <path d="M236.836 61.896c27.7 29.7 48.6 64.1 48.2 98.1-.3 34.1-22 67.8-49.6 89-27.7 21.1-61.4 29.8-100.3 35-39 5.3-83.2 7.1-104.2-14-21-21.2-18.8-65.4-7.7-98.6 11-33.1 30.9-55.2 51.9-84.9 21-29.6 43.1-66.9 71.4-73 28.2-6.2 62.6 18.7 90.3 48.4" />
-      </svg>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="absolute bottom-[10%] left-[30%] opacity-20 w-[300px] h-[300px] text-red-600 fill-current"
-      >
-        <path d="M223.17 86.808c20.5 31.2 35.1 57.6 38.6 87.5 3.6 30-4 63.4-24.5 79.1-20.5 15.6-53.9 13.4-91.9 17.9-37.9 4.4-80.4 15.6-97.7 0-17.3-15.6-9.6-58.1-.2-91.2 9.3-33.1 20.1-56.9 37.5-88.2 17.3-31.2 41.1-69.9 66.2-71.2 25.1-1.3 51.5 34.8 72 66.1" />
-      </svg>
       <header className="pb-20 flex flex-col items-center">
-        <h1 className="text-red-600 font-bold font-primary text-6xl">
-          Youtemy
+        <h1 className="text-secondary-300 font-bold font-primary text-6xl text-center">
+          The youtube and udemy <br /> course generator
         </h1>
         <div className="py-2" />
-        <p className="text-red-600 font-primary text-xl opacity-80">
+        <p className="text-white font-primary text-xl opacity-80">
           Create courses based on youtube videos and export them like udemy
           courses
         </p>
         <div className="py-10" />
-        <span className="text-secondary-50 font-primary text-lg">
-          {" "}
-          Create a learnful experience
-        </span>
-        <div className="pb-2" />
-        <div className="border-t-2 border-secondary-50 w-[400px] h-[400px]">
-          <div className="pb-2" />
-          <form action="" className="w-full">
-            <input
-              type="text"
-              name="course-name"
-              id="course-name"
-              placeholder="Title of your course"
-              className="border-2 border-secondary-50 bg-transparent px-2 py-2 w-full focus:outline-none hover:bg-secondary-200 duration-100 focus:bg-secondary-100 focus:text-white text-secondary-50"
-            />
-            <div className="py-1" />
-            <input
-              type="text"
-              name="youtube-link"
-              id="youtube-link"
-              placeholder="Youtube link or video id"
-              className="border-2 border-secondary-50 bg-transparent px-2 py-2 w-full focus:outline-none hover:bg-secondary-200 duration-100 focus:bg-secondary-100 focus:text-white text-secondary-50"
-            />
 
+        <div className="w-[400px] bg-primary-200 rounded-md p-6 relative">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+            className=" w-[100px] h[100px] mx-auto"
+            viewBox="0 0 350 350"
+          >
+            <defs>
+              <path
+                d="m459.352 402.4-102.336-33.168c-2.439-.828-5-1.245-7.576-1.232H348l-21.6-28.8a8 8 0 0 0-5.392-3.136 6.953 6.953 0 0 0-1.008.08V336h-8v-25.552a82.634 82.634 0 0 0 32-65.248v-65.776a7.9 7.9 0 0 0 3.936-1.024 8 8 0 0 0 4.064-6.96v-63.336l40-16.224V104c-8.837 0-16 7.163-16 16v48c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-48c0-8.837-7.163-16-16-16V80a8 8 0 0 0-4.704-7.296l-160-72a7.998 7.998 0 0 0-6.56 0l-160 72a8 8 0 0 0 .272 14.712L128 108.104v63.336a8 8 0 0 0 8 8v65.76a82.634 82.634 0 0 0 32 65.248V336h-8v.144a6.953 6.953 0 0 0-1.008-.08 8 8 0 0 0-5.392 3.136L132 368h-1.44a22.9 22.9 0 0 0-7.424 1.184L20.176 402.56A31.738 31.738 0 0 0 0 432.24V472a8 8 0 0 0 8 8h464a8 8 0 0 0 8-8v-39.76a31.87 31.87 0 0 0-20.648-29.84zM408 168h-16v-48h16v48zm-74.824 206.912-60.856 54.096L252 408.664l66.576-53.264 14.6 19.512zM144 158.64V104h-.16c.089-.421.143-.85.16-1.28V86.864l96-14.768 96 14.768v15.856c.017.43.071.859.16 1.28H336v54.64a98.998 98.998 0 0 0-36-6.64 91.083 91.083 0 0 0-55.576 17.704 56.483 56.483 0 0 0-4.424 3.792 60.792 60.792 0 0 0-4.408-3.776A91.06 91.06 0 0 0 180 152a98.977 98.977 0 0 0-36 6.64zM240 16.8l139.656 62.84L352 90.84V80a7.999 7.999 0 0 0-6.784-7.904l-104-16a7.727 7.727 0 0 0-2.4 0l-104 16A8 8 0 0 0 128 80v10.84l-27.656-11.2L240 16.8zm-88 228.4v-72.328A83.092 83.092 0 0 1 180 168a74.815 74.815 0 0 1 45.704 14.296 41.86 41.86 0 0 1 7.88 7.92 8 8 0 0 0 12.8 0 41.999 41.999 0 0 1 7.896-7.936A74.827 74.827 0 0 1 300 168a83.092 83.092 0 0 1 28 4.872V245.2c-.044 36.874-29.926 66.756-66.8 66.8h-42.4c-36.874-.044-66.756-29.926-66.8-66.8zm66.8 82.8h42.4a82.142 82.142 0 0 0 34.8-7.768v32.72l-56 44.8-56-44.8v-32.72A82.145 82.145 0 0 0 218.8 328zm-57.352 27.4L228 408.664l-20.32 20.344-60.856-54.096 14.624-19.512zM464 464H16v-31.76a15.704 15.704 0 0 1 9.6-14.64l102.632-33.248a7.104 7.104 0 0 1 2.328-.352h2.4l69.728 61.976a8 8 0 0 0 10.968-.32L240 419.312l26.344 26.344a8 8 0 0 0 10.968.32L347.04 384h2.4a7.365 7.365 0 0 1 2.488.408l102.016 33.032A15.815 15.815 0 0 1 464 432.24V464z"
+                transform="matrix(.66917 0 0 .66917 15.4 15.4)"
+                fill="#dabfff"
+                id="a"
+              />
+            </defs>
+            <g>
+              <pattern
+                id="b"
+                width={350}
+                height={350}
+                patternUnits="userSpaceOnUse"
+              >
+                <use xlinkHref="#a" x={-350} y={-350} />
+                <use xlinkHref="#a" y={-350} />
+                <use xlinkHref="#a" x={350} y={-350} />
+                <use xlinkHref="#a" x={-350} />
+                <use xlinkHref="#a" />
+                <use xlinkHref="#a" x={350} />
+                <use xlinkHref="#a" x={-350} y={350} />
+                <use xlinkHref="#a" y={350} />
+                <use xlinkHref="#a" x={350} y={350} />
+              </pattern>
+              <rect width="100%" height="100%" fill="url(#b)" />
+            </g>
+          </svg>
+          <div className="py-2" />
+          <form action="" className="w-full">
+            <TextInput name="course-name" placeholder="Title of your course" />
             <div className="py-2" />
+            <TextInput
+              name="youtube-link"
+              placeholder="Youtube link or video id"
+            />
+            <div className="py-3" />
             <Button primary={true} type="submit" classNames={"w-full"}>
               Start Learning
             </Button>
